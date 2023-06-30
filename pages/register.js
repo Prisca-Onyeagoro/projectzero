@@ -24,9 +24,8 @@ const register = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(values),
     };
-    const res = await axios
-      .post('http://localhost:3000/api/signup', Options)
-      .then((response) => {
+    const res = await fetch('http://localhost:3000/api/signup', Options).then(
+      (response) => {
         if (!response.ok) {
           return response.json().then((data) => {
             const error = data.message;
@@ -35,7 +34,8 @@ const register = () => {
         } else {
           Router.push('/');
         }
-      });
+      }
+    );
   }
 
   function DisplayErrorMessage(error) {
