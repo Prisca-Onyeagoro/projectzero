@@ -1,4 +1,4 @@
-const Registervalidate = (values) => {
+export const Registervalidate = (values) => {
   const errors = {};
   if (!values.name) {
     errors.name = 'This field is required';
@@ -10,6 +10,13 @@ const Registervalidate = (values) => {
     errors.email = 'This Field is Required';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Invalid email address';
+  }
+  if (!values.address) {
+    errors.address = 'This field is required';
+  }
+
+  if (!values.phoneno) {
+    errors.phoneno = 'This field is required';
   }
 
   if (!values.password) {
@@ -27,4 +34,20 @@ const Registervalidate = (values) => {
   return errors;
 };
 
-export default Registervalidate;
+export const Loginvalidate = (values) => {
+  const errors = {};
+
+  if (!values.email) {
+    errors.email = 'This Field is Required';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address';
+  }
+
+  if (!values.password) {
+    errors.password = 'This field is required';
+  } else if (values.password.includes(' ')) {
+    errors.password = 'This field is required';
+  }
+
+  return errors;
+};

@@ -11,7 +11,7 @@ export default async function Signup(req, res) {
     if (!req.body) {
       return res.status(400).json({ message: 'Missing field' });
     }
-    const { name, email, password } = req.body;
+    const { name, email, address, phoneno, password } = req.body;
     // check if the user exits using his email
     const userexists = await Users.findOne({ email });
     if (userexists) {
@@ -20,6 +20,8 @@ export default async function Signup(req, res) {
     const createuser = await Users.create({
       name,
       email,
+      address,
+      phoneno,
       password: await hash(password, 10),
     });
     return res.status(201).json({ createuser });
