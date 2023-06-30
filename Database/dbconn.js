@@ -1,9 +1,7 @@
 import mongoose from 'mongoose';
 
 const dbconn = async () => {
-  const { connection } = await mongoose.connect(
-    'mongodb+srv://zidev:123@cluster0.pu0ehdt.mongodb.net/'
-  );
+  const { connection } = await mongoose.connect(process.env.database_url);
   try {
     if (connection.readyState === 1) {
       Promise.resolve(true);
